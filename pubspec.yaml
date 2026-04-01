@@ -12,6 +12,7 @@ dependencies:
   fixnum: ^1.1.1
   flutter:
     sdk: flutter
+  flutter_blue_plus: ^1.36.6
   protobuf: ^6.0.0
   rxdart: ^0.28.0
 

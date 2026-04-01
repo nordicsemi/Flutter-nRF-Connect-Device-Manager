@@ -7,6 +7,9 @@ import 'models/image_upload_alignment.dart';
 import 'models/firmware_upgrade_mode.dart';
 import 'src/mcumgr_update_manager.dart';
 
+export 'src/smp_client.dart';
+export 'src/smp_data_store.dart';
+
 part 'src/mcumgr_flutter.dart';
 part 'models/progress_update.dart';
 part 'models/mcu_log_message.dart';
