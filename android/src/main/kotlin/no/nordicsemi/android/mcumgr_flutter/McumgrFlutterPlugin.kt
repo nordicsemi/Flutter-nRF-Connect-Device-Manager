@@ -200,7 +200,7 @@ class McumgrFlutterPlugin : FlutterPlugin, MethodCallHandler {
 
 				FlutterMethod.disposeSettings -> {
 					if (::settingsManager.isInitialized) {
-						settingsManager.mcuMgrSettingsManager.transport.release()
+						settingsManager.transport.release()
 					}
 					result.success(null)
 				}

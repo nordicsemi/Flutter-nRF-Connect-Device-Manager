@@ -16,7 +16,7 @@ import io.runtime.mcumgr.managers.SettingsManager as McuMgrSettingsManager
 private const val errorCode = "MCUMGR_ERROR"
 
 class SettingsManager(
-    transport: McuMgrBleTransport,
+    val transport: McuMgrBleTransport,
     val padTo4Bytes: Boolean = false,
     val encodeValueToCBOR: Boolean = false,
     val useByteStringEncoding: Boolean = true,
