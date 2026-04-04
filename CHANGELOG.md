@@ -1,5 +1,12 @@
+## 0.9.0
+Added Settings Manager support:
+- New `McumgrSettings` class for reading and writing device configuration settings
+- Support for CBOR encoding and 4-byte padding options
+- Methods to read all settings, read specific settings, and write settings
+- Full support for different data types (string, numeric, boolean)
+
 ## 0.8.1
-- Unused dependency to `tuple` removed 
+- Unused dependency to `tuple` removed
 
 ## 0.8.0
 - Added support for MacOS (#114)
