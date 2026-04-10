@@ -218,4 +218,14 @@ class DeviceUpdateManager extends FirmwareUpdateManager {
       return null;
     }
   }
+
+  @override
+  Future<void> confirmImage(Uint8List hash) async {
+    await methodChannel.invokeMethod(
+        UpdateManagerMethod.confirmImage.rawValue,
+        <String, dynamic>{
+          'deviceId': _deviceId,
+          'hash': hash,
+        });
+  }
 }

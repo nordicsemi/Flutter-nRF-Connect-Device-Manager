@@ -139,6 +139,10 @@ class McumgrFlutterPlugin : FlutterPlugin, MethodCallHandler {
 				FlutterMethod.readImageList -> {
 					imageList(call, result)
 				}
+
+				FlutterMethod.confirmImage -> {
+					confirmImage(call, result)
+				}
 			}
 		} catch (e: FlutterError) {
 			result.error(e.code, e.message, null)
@@ -304,5 +308,32 @@ class McumgrFlutterPlugin : FlutterPlugin, MethodCallHandler {
 		}
 
 		updateManager.imageManager.list(callback)
+	}
+
+	private fun confirmImage(@NonNull call: MethodCall, result: Result) {
+		val args = (call.arguments as? Map<*, *>).guard {
+			throw WrongArguments("Expected map arguments with deviceId and hash")
+		}
+		val address = (args["deviceId"] as? String).guard {
+			throw WrongArguments("Device address expected")
+		}
+		val hash = (args["hash"] as? ByteArray).guard {
+			throw WrongArguments("Image hash expected")
+		}
+		val updateManager = managers[address].guard {
+			throw UpdateManagerDoesNotExist("Update manager does not exist")
+		}
+
+		val callback = object : McuMgrCallback<McuMgrImageStateResponse> {
+			override fun onResponse(response: McuMgrImageStateResponse) {
+				mainHandler.post { result.success(null) }
+			}
+
+			override fun onError(exception: McuMgrException) {
+				mainHandler.post { result.error("mcumgr_error", exception.message, null) }
+			}
+		}
+
+		updateManager.imageManager.confirm(hash, callback)
 	}
 }
