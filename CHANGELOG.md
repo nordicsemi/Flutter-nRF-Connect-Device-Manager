@@ -1,3 +1,6 @@
+## Unreleased
+- Added `confirmImage(hash)` method for manual firmware confirmation after `testOnly` mode
+
 ## 0.8.1
 - Unused dependency to `tuple` removed 
 
