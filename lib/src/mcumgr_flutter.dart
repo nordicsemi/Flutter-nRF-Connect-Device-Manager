@@ -109,6 +109,16 @@ abstract class FirmwareUpdateManager {
 
   /// Read current image list from the device.
   Future<List<ImageSlot>?> readImageList();
+
+  /// Confirm the image with the given [hash] on the device.
+  ///
+  /// Use this after a `testOnly` upgrade to permanently mark the running image
+  /// as confirmed. The [hash] should match the active, unconfirmed image
+  /// obtained from [readImageList].
+  ///
+  /// If the image is not confirmed before the next reboot, the bootloader will
+  /// revert to the previous firmware.
+  Future<void> confirmImage(Uint8List hash);
 }
 
 abstract class FirmwareUpdateLogger {

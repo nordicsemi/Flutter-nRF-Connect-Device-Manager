@@ -104,6 +104,24 @@ After the update is finished, call `kill` to kill the manager, otherwise it will
 updateManager.kill();
 ```
 
+### Reading image list
+To read the current image list (installed firmware slots) from the device:
+
+```dart
+List<ImageSlot>? slots = await updateManager.readImageList();
+```
+
+### Confirming an image
+When using `FirmwareUpgradeMode.testOnly`, the new firmware runs without being confirmed. Use `confirmImage` to permanently mark it as the active image after your own validation:
+
+```dart
+final slots = await updateManager.readImageList();
+final activeSlot = slots!.firstWhere((s) => s.active && !s.confirmed);
+await updateManager.confirmImage(activeSlot.hash);
+```
+
+If `confirmImage` is not called before the next reboot, the bootloader will revert to the previous firmware.
+
 ## Reading logs
 To listen for logs, subscribe to the `logger.logMessageStream`:
 

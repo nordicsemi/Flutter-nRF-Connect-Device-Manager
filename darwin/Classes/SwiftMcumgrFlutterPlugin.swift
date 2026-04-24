@@ -129,6 +129,8 @@ public class SwiftMcumgrFlutterPlugin: NSObject, FlutterPlugin {
                 result(nil)
             case .readImageList:
                 try readImages(call: call, result: result)
+            case .confirmImage:
+                try confirmImage(call: call, result: result)
             }
         } catch let e as FlutterError {
             result(e)
@@ -290,6 +292,29 @@ public class SwiftMcumgrFlutterPlugin: NSObject, FlutterPlugin {
             } catch {
                 result(FlutterError(error: error, call: call))
             }
+        }
+    }
+
+    private func confirmImage(call: FlutterMethodCall, result: @escaping FlutterResult) throws {
+        guard let args = call.arguments as? [String: Any],
+              let uuid = args["deviceId"] as? String else {
+            throw FlutterError(code: ErrorCode.wrongArguments.rawValue, message: "Expected map arguments with deviceId and hash", details: call.debugDetails)
+        }
+
+        guard let hashData = (args["hash"] as? FlutterStandardTypedData)?.data else {
+            throw FlutterError(code: ErrorCode.wrongArguments.rawValue, message: "Image hash expected", details: call.debugDetails)
+        }
+
+        guard let manager = updateManagers[uuid] else {
+            throw FlutterError(code: ErrorCode.updateManagerDoesNotExist.rawValue, message: "Update manager does not exist", details: call.debugDetails)
+        }
+
+        manager.imageManager.confirm(hash: hashData) { response, error in
+            if let error {
+                result(FlutterError(error: error, call: call))
+                return
+            }
+            result(nil)
         }
     }
 }
