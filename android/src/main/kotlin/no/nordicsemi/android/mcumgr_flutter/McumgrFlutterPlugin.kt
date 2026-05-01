@@ -264,8 +264,19 @@ class McumgrFlutterPlugin : FlutterPlugin, MethodCallHandler {
 		val address = (call.arguments as? String).guard {
 			throw WrongArguments("Device Address expected")
 		}
-		if (managers.containsKey(address)) {
-			managers[address]!!.releaseTransport();
+		val manager = managers[address]
+		if (manager != null) {
+			// Cancel any in-progress upgrade before releasing the transport
+			// so Nordic's FirmwareUpgradeManager can gracefully tear down
+			// its connection state. Without this, killing mid-connect leaves
+			// the GATT in a half-released state and the peripheral does not
+			// re-advertise until Bluetooth is toggled off and on.
+			try {
+				manager.cancel()
+			} catch (_: Throwable) {
+				// best-effort: cancel may throw if no upgrade is in flight
+			}
+			manager.releaseTransport()
 		}
 		managers.remove(address)
 	}

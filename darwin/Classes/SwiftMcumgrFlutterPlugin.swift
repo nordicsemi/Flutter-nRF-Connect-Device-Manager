@@ -243,7 +243,14 @@ public class SwiftMcumgrFlutterPlugin: NSObject, FlutterPlugin {
     }
 
     private func kill(call: FlutterMethodCall) throws {
-        let uuid = try retrieveManager(call: call).peripheral.identifier.uuidString
+        let manager = try retrieveManager(call: call)
+        let uuid = manager.peripheral.identifier.uuidString
+        // Cancel any in-progress upgrade before releasing the manager so
+        // the underlying CoreBluetooth peripheral is left in a clean
+        // state. Without this, killing during the connecting phase can
+        // leave the peripheral retained in a half-disconnected state
+        // until Bluetooth is toggled off and on.
+        manager.cancel()
         updateManagers.removeValue(forKey: uuid)
     }
 
