@@ -21,7 +21,7 @@ dev_dependencies:
   faker: ^2.1.0
   flutter_test:
     sdk: flutter
-  pigeon: ^25.3.2
+  pigeon: ^26.0.0
 
 flutter:
   plugin:
