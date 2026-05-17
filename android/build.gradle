@@ -13,7 +13,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:8.13.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.squareup.wire:wire-gradle-plugin:5.5.1'
+        classpath 'com.squareup.wire:wire-gradle-plugin:6.4.0'
     }
 }
 
