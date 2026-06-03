@@ -205,7 +205,8 @@ class McumgrFlutterPlugin : FlutterPlugin, MethodCallHandler {
 							?: return result.error(settingsManagerErrorCode, "BAD_ARGS", "Expected key in map")
 						val value = args["value"]
 							?: return result.error(settingsManagerErrorCode, "BAD_ARGS", "Expected value in map")
-						settingsManager.writeSetting(key, value, result)
+						val password = args["password"] as? String
+						settingsManager.writeSetting(key, value, password, result)
 
 					} else {
 						return result.error(

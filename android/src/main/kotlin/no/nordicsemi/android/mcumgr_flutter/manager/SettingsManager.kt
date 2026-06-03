@@ -76,7 +76,7 @@ class SettingsManager(
             })
     }
 
-    fun writeSetting(key: String, value: Any, result: MethodChannel.Result) {
+    fun writeSetting(key: String, value: Any, password: String? = null, result: MethodChannel.Result) {
         // Apply precision mode for Double values
         val processedValue = when {
             value is Double -> {
@@ -132,6 +132,12 @@ class SettingsManager(
             val payloadMap = HashMap<String, Any>()
             payloadMap["name"] = key
             payloadMap["val"] = if (processedValue is String && padTo4Bytes) processedValue.padTo4Bytes() else processedValue
+            // Optional pwd field — firmwares that protect specific keys with a
+            // configurable password use this to authorise the write. Omitted
+            // when null so the wire shape matches the prior behaviour exactly.
+            if (password != null) {
+                payloadMap["pwd"] = password
+            }
             mcuMgrSettingsManager.send(2, 0, payloadMap, 2500L, McuMgrResponse::class.java, writeCallback)
         }
     }

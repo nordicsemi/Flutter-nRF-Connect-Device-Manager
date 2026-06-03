@@ -551,6 +551,7 @@ extension SwiftMcumgrFlutterPlugin: CBCentralManagerDelegate {
                                details: nil)
         }
 
-        settingsManager.writeSetting(key: key, value: value, result: result)
+        let password = args["password"] as? String
+        settingsManager.writeSetting(key: key, value: value, password: password, result: result)
     }
 }

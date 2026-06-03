@@ -63,8 +63,25 @@ final class McumgrSettings {
     return result;
   }
 
-  Future<Uint8List> writeSetting(String key, dynamic value) async {
-    final resultBytes = await _methodChannel.invokeMethod<Uint8List>('writeSetting', {'key': key, 'value': value});
+  /// Writes [value] to setting [key].
+  ///
+  /// When [password] is non-null, it is added to the SMP write payload as the
+  /// `pwd` CBOR field. Firmware implementations that gate writes on a setting
+  /// password use this field to authorise the operation; firmwares that don't
+  /// care simply ignore it. When [password] is null the payload omits `pwd`
+  /// entirely — fully backwards compatible with the prior signature.
+  ///
+  /// Password injection is only honoured when the manager was initialised
+  /// with `useByteStringEncoding: false` (direct CBOR map payload path). With
+  /// `useByteStringEncoding: true` the [password] parameter is silently
+  /// ignored because the underlying `SettingsManager.write` API on each
+  /// platform hardcodes the payload to `{name, val}` with no extension hook.
+  Future<Uint8List> writeSetting(String key, dynamic value, {String? password}) async {
+    final resultBytes = await _methodChannel.invokeMethod<Uint8List>('writeSetting', {
+      'key': key,
+      'value': value,
+      if (password != null) 'password': password,
+    });
     if (resultBytes == null) {
       throw Exception("No response from native plugin");
     }

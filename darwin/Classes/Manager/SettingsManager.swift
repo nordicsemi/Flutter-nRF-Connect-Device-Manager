@@ -108,7 +108,7 @@ final class SettingsManager {
         }
     }
 
-    func writeSetting(key: String, value: Any, result: @escaping FlutterResult) {
+    func writeSetting(key: String, value: Any, password: String? = nil, result: @escaping FlutterResult) {
         do {
             let valueBytes: [UInt8]
 
@@ -181,10 +181,18 @@ final class SettingsManager {
             } else {
                 // Direct CBOR value encoding (no bstr wrapping)
                 let cborValue = try CBOR.decode(valueBytes) ?? .byteString(valueBytes)
-                let payload: [String: CBOR] = [
+                var payload: [String: CBOR] = [
                     "name": .utf8String(key),
                     "val": cborValue
                 ]
+                // Optional pwd field — firmwares that protect specific keys
+                // with a configurable password use this to authorise the
+                // write. Omitted when nil so the wire shape matches the prior
+                // behaviour exactly.
+                if let password = password {
+                    payload["pwd"] = .utf8String(password)
+                    sendLogToDart("Including pwd in write payload for key: \(key)")
+                }
                 mcuMgrSettingsManager.send(op: .write, commandId: SettingsCommandID.readWrite, payload: payload) { (response: McuMgrResponse?, error: Error?) in
                     self.handleWriteResponse(response: response, error: error, result: result)
                 }

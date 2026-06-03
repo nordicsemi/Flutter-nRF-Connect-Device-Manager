@@ -220,6 +220,33 @@ await mcumgrSettings.writeSetting('config/interval', 1000);
 await mcumgrSettings.writeSetting('feature/enabled', true);
 ```
 
+#### Authenticated Writes (`pwd`)
+
+Some firmware builds protect a subset of settings behind a configurable
+password. To authenticate a write, pass the password via the optional
+`password` named parameter — it is added to the SMP payload as the `pwd`
+CBOR field:
+
+```dart
+// Write to a protected setting, supplying the device password.
+await mcumgrSettings.writeSetting(
+  'protected/setting/key',
+  42,
+  password: 'your-device-password',
+);
+```
+
+If `password` is omitted (or `null`), the payload is identical to the
+prior behaviour — no `pwd` field is sent. This makes the parameter fully
+backwards compatible: existing code keeps working unchanged, and firmware
+that doesn't implement password protection simply ignores the extra
+field.
+
+Password injection requires the manager to be initialised with
+`useByteStringEncoding: false` (the direct CBOR map payload path). With
+the byte-string encoding the underlying platform write API hardcodes the
+payload shape and silently ignores the parameter.
+
 ### Decoding Setting Values
 
 Settings are returned as raw bytes (`Uint8List`). You need to decode them based on their expected type:

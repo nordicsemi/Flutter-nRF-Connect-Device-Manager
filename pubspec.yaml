@@ -1,7 +1,7 @@
 name: mcumgr_flutter
 description: nRF Connect Device Manager library is a Flutter plugin based on
   Android, iOS and MacOS nRF Connect Device Manager libraries.
-version: 0.9.1
+version: 0.10.0
 homepage: 'https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager'
 
 environment:

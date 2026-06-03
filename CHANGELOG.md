@@ -1,3 +1,12 @@
+## 0.10.0
+- `McumgrSettings.writeSetting` accepts an optional `password` parameter. When
+  supplied, the value is added to the SMP write payload as the `pwd` CBOR
+  field, allowing clients to authenticate writes against firmware that gates
+  protected settings on a configurable password. The argument defaults to
+  `null` for full backwards compatibility, and is honoured only when the
+  manager was initialised with `useByteStringEncoding: false` (direct CBOR
+  payload path). Implemented for iOS/macOS and Android.
+
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
 
