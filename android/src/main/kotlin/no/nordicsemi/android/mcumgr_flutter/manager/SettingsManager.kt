@@ -50,7 +50,13 @@ class SettingsManager(
                 override fun onResponse(response: McuMgrSettingsUniversalResponse) {
                     try {
                         if (response.isSuccess) {
-                            val byteResponse = response.`val`
+                            // A plain read returns {val: <value>}, but enumeration
+                            // keys (settings list walk) instead answer with
+                            // {list: <path>} and carry no val. Fall back to it so
+                            // the response's meaning survives the bridge instead of
+                            // arriving as a spurious null (parity with the iOS
+                            // handler, which forwards the whole payload).
+                            val byteResponse = response.`val` ?: response.list
                             result.success(byteResponse)
                         } else {
                             result.error(
@@ -161,5 +167,8 @@ class SettingsManager(
 
 @Suppress("PROPERTY_HIDES_JAVA_FIELD")
 private class McuMgrSettingsUniversalResponse @JsonCreator constructor(
-    @param:JsonProperty("val") var `val`: Object?
+    @param:JsonProperty("val") var `val`: Object?,
+    // Enumeration reads (settings list walk) answer with {list: <path>} instead
+    // of {val: ...}; mapping it keeps that value from being dropped.
+    @param:JsonProperty("list") var list: Object?
 ) : McuMgrSettingsReadResponse()
