@@ -1,6 +1,7 @@
-# nRF Connect Device Manager
+> [!NOTE]  
+> (Flutter) nRF Connect Device Manager library is a plugin (aka "wrapper") around the existing [Android](https://github.com/nordicsemi/Android-nRF-Connect-Device-Manager) and [iOS](https://github.com/nordicsemi/IOS-nRF-Connect-Device-Manager) nRF Connect Device Manager libraries. Please be aware this has consequences for both API design as well as for where the underlying issues you report may actually be.
 
-nRF Connect Device Manager library is a Flutter plugin (aka "wrapper") around the existing [Android](https://github.com/nordicsemi/Android-nRF-Connect-Device-Manager) and [iOS](https://github.com/nordicsemi/IOS-nRF-Connect-Device-Manager) nRF Connect Device Manager libraries. For more concrete documentation, you may also try reaching out into those for specific details.
+# (Flutter) nRF Connect Device Manager
 
 ![Platforms](https://img.shields.io/badge/Platforms-Android%20|%20iOS%20|%20macOS%20|%20Web-333333.svg)
 [![License](https://img.shields.io/github/license/nordicsemi/Flutter-nRF-Connect-Device-Manager)](https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager/blob/main/LICENSE)
@@ -8,8 +9,6 @@ nRF Connect Device Manager library is a Flutter plugin (aka "wrapper") around th
 [![GitHub stars](https://img.shields.io/github/stars/nordicsemi/Flutter-nRF-Connect-Device-Manager)](https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/nordicsemi/Flutter-nRF-Connect-Device-Manager)](https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager/members)
 [![GitHub contributors](https://img.shields.io/github/contributors/nordicsemi/Flutter-nRF-Connect-Device-Manager)](https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager/graphs/contributors)
-
----
 
 ## Supported Platforms
 
@@ -121,18 +120,6 @@ To read the current image list (installed firmware slots) from the device:
 List<ImageSlot>? slots = await updateManager.readImageList();
 ```
 
-### Confirming an image
-
-When using `FirmwareUpgradeMode.testOnly`, the new firmware runs without being confirmed. Use `confirmImage` to permanently mark it as the active image after your own validation:
-
-```dart
-final slots = await updateManager.readImageList();
-final activeSlot = slots!.firstWhere((s) => s.active && !s.confirmed);
-await updateManager.confirmImage(activeSlot.hash);
-```
-
-If `confirmImage` is not called before the next reboot, the bootloader will revert to the previous firmware.
-
 ## Reading logs
 
 To listen for logs, subscribe to the `logger.logMessageStream`:
@@ -169,11 +156,34 @@ Add the following `<script>` tag to your app's `web/index.html` **before** `flut
 
 Without this script, the browser will show a second Bluetooth device picker when the firmware update starts.
 
-## Settings Manager
+## Advanced
+
+When you use the aforementioned `update` method with `FirmwareUpdateManager`, the library is on what we call "Basic" mode. This is the default way in which all of our apps such as nRF Connect Device Manager ([Android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.nrfconnectdevicemanager&hl=en&pli=1), [iOS](https://apps.apple.com/us/app/nrf-connect-device-manager/id1519423539)) and nRF Connect ([Android](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp&hl=en), [iOS](https://apps.apple.com/us/app/nrf-connect-for-mobile/id1054362403)) work. However, as with everything, you might have particular uses cases or have your own needs regarding DFU. The specific [Android](https://github.com/nordicsemi/Android-nRF-Connect-Device-Manager) and [iOS](https://github.com/nordicsemi/IOS-nRF-Connect-Device-Manager) DFU libraries have much further depth and complexity, which translates into what this wrapper library exposes.
+
+For the most part, Flutter nRF Connect Device Manager library only exposes "Basic" Mode APIs. But we recommend digging into the [iOS Readme page](https://github.com/nordicsemi/IOS-nRF-Connect-Device-Manager#introduction) for more details.
+
+### Confirming an image
+
+When performing an update, one of the steps to enable the new uploaded firmware to run is to [mark the images as confirmed](https://github.com/nordicsemi/IOS-nRF-Connect-Device-Manager#firmware-upgrade-mode). This happens out of the box. However, if when calling `update` with `FirmwareUpdateManager` the `upgradeMode` is changed to `FirmwareUpgradeMode.testOnly`, the library will not send `confirm` commands. Instead, **the library/API will return success without a reset nor enabling the uploaded images to run**, since they were not confirmed. This is because in this mode, the user is expected to do this; implication being the library user wants to perform their own validation step before allowing the new uploaded firmware to run.
+
+Once your own validation process is complete, you may use `confirmImage` to permanently mark the uploaded firmware as active:
+
+```dart
+final slots = await updateManager.readImageList();
+final activeSlot = slots!.firstWhere((s) => s.active && !s.confirmed);
+await updateManager.confirmImage(activeSlot.hash);
+```
+
+If `confirmImage` is not called before the next reboot, the bootloader will revert to the previous firmware.
+
+### Settings Manager
 
 The Settings Manager provides functionality to read and write device configuration settings via the MCU Manager protocol.
 
-### Creating a Settings Manager
+> [!CAUTION]
+> This is for Advanced needs. Like calling `confirm`, if you don't have prior knowledge about this, it is very likely you don't need to worry about it. Anything that is part of standard DFU procedure is already handled by default for you.
+
+#### Creating a Settings Manager
 
 ```dart
 import 'package:mcumgr_flutter/mcumgr_flutter.dart';
@@ -181,7 +191,7 @@ import 'package:mcumgr_flutter/mcumgr_flutter.dart';
 final mcumgrSettings = McumgrSettings();
 ```
 
-### Initializing the Settings Manager
+#### Initializing the Settings Manager
 
 Before using the settings manager, you must initialize it with the device address:
 
@@ -193,7 +203,7 @@ await mcumgrSettings.init(
 );
 ```
 
-### Reading Settings
+#### Reading Settings
 
 You can read all settings or a specific setting:
 
@@ -207,7 +217,7 @@ final rawBytes = await mcumgrSettings.readSetting('config/timeout/value');
 // The result is returned as Uint8List, which you need to decode based on the expected type
 ```
 
-### Writing Settings
+#### Writing Settings
 
 To write a setting:
 
@@ -220,7 +230,7 @@ await mcumgrSettings.writeSetting('config/interval', 1000);
 await mcumgrSettings.writeSetting('feature/enabled', true);
 ```
 
-### Decoding Setting Values
+#### Decoding Setting Values
 
 Settings are returned as raw bytes (`Uint8List`). You need to decode them based on their expected type:
 
@@ -245,7 +255,7 @@ bool decodeBoolSetting(Uint8List bytes) {
 }
 ```
 
-### Disposing the Settings Manager
+#### Disposing (of) the Settings Manager
 
 When you're done using the settings manager:
 
@@ -253,7 +263,7 @@ When you're done using the settings manager:
 await mcumgrSettings.dispose();
 ```
 
-### Complete Example
+#### Usage Example
 
 ```dart
 final mcumgrSettings = McumgrSettings();
