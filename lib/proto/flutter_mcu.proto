@@ -115,6 +115,7 @@ message ProtoLogMessage {
         DFU = 9;
         SHELL = 10;
         SUIT = 11;
+        MEMFAULT = 12;
     }
 
     enum LogLevel {

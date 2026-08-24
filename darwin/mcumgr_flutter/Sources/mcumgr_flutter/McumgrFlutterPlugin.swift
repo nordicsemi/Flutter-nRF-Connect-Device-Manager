@@ -8,7 +8,7 @@
 import CoreBluetooth
 import iOSMcuManagerLibrary
 
-public class SwiftMcumgrFlutterPlugin: NSObject, FlutterPlugin {
+public class McumgrFlutterPlugin: NSObject, FlutterPlugin {
     private var initManagerResultQueue = ConcurrentQueue<(call: FlutterMethodCall, result: FlutterResult)>()
 
     static let namespace = "mcumgr_flutter"
@@ -81,7 +81,7 @@ public class SwiftMcumgrFlutterPlugin: NSObject, FlutterPlugin {
         let updateProgressEventChannel = FlutterEventChannel(channel: .updateProgressEventChannel, binaryMessenger: messenger)
         let logEventChannel = FlutterEventChannel(channel: .logEventChannel, binaryMessenger: messenger)
 
-        let instance = SwiftMcumgrFlutterPlugin(
+        let instance = McumgrFlutterPlugin(
             updateStateEventChannel: updateStateEventChannel,
             updateProgressEventChannel: updateProgressEventChannel,
             logEventChannel: logEventChannel,
@@ -365,7 +365,7 @@ public class SwiftMcumgrFlutterPlugin: NSObject, FlutterPlugin {
     }
 }
 
-extension SwiftMcumgrFlutterPlugin: CBCentralManagerDelegate {
+extension McumgrFlutterPlugin: CBCentralManagerDelegate {
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .poweredOn:

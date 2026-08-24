@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 public enum ErrorCode: String {
     case platformError = "Error"

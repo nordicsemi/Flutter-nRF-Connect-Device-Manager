@@ -174,6 +174,8 @@ class ProtoLogMessage_LogCategory extends $pb.ProtobufEnum {
       ProtoLogMessage_LogCategory._(10, _omitEnumNames ? '' : 'SHELL');
   static const ProtoLogMessage_LogCategory SUIT =
       ProtoLogMessage_LogCategory._(11, _omitEnumNames ? '' : 'SUIT');
+  static const ProtoLogMessage_LogCategory MEMFAULT =
+      ProtoLogMessage_LogCategory._(12, _omitEnumNames ? '' : 'MEMFAULT');
 
   static const $core.List<ProtoLogMessage_LogCategory> values =
       <ProtoLogMessage_LogCategory>[
@@ -189,10 +191,11 @@ class ProtoLogMessage_LogCategory extends $pb.ProtobufEnum {
     DFU,
     SHELL,
     SUIT,
+    MEMFAULT,
   ];
 
   static final $core.List<ProtoLogMessage_LogCategory?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 11);
+      $pb.ProtobufEnum.$_initByValueList(values, 12);
   static ProtoLogMessage_LogCategory? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

@@ -8,6 +8,11 @@
 import iOSMcuManagerLibrary
 import SwiftCBOR
 import Foundation
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 final class SettingsManager {
     private let transport: McuMgrBleTransport
