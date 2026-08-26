@@ -68,6 +68,6 @@ dependencies {
     // See: https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager/issues/152
     implementation 'com.google.protobuf:protobuf-kotlin-lite:3.25.9'
 
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.21.3'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.22.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.22'
 }
