@@ -4,7 +4,7 @@ group 'no.nordicsemi.android.mcumgr_flutter'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '2.3.21'
+    ext.kotlin_version = '2.4.10'
     repositories {
         google()
         mavenCentral()
