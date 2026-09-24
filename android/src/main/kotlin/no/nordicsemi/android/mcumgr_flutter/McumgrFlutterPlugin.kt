@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Pair
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
@@ -319,7 +318,7 @@ class McumgrFlutterPlugin : FlutterPlugin, MethodCallHandler {
 			)
 		}
 
-		val images = arg.images.map { Pair.create(it.image, it.data_.toByteArray()) }
+		val images = arg.images.map { Triple(it.image, it.slot, it.data_.toByteArray()) }
 		updateManager.start(images, config)
 	}
 
