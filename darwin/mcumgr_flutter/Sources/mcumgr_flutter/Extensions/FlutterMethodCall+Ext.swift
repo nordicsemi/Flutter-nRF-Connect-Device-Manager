@@ -5,7 +5,11 @@
 //  Created by Nick Kibysh on 27/02/2024.
 //
 
-import Foundation
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 extension FlutterMethodCall {
     var debugDetails: [String:Any] {

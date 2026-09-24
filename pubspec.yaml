@@ -5,8 +5,8 @@ version: 0.9.1
 homepage: 'https://github.com/nordicsemi/Flutter-nRF-Connect-Device-Manager'
 
 environment:
-  sdk: ^3.8.0
-  flutter: '>=3.7.2'
+  sdk: ^3.11.0
+  flutter: '>=3.41.0'
 
 dependencies:
   fixnum: ^1.1.1

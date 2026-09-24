@@ -7,6 +7,11 @@
 
 import Foundation
 import iOSMcuManagerLibrary
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 class UpdateLogger {
     let logStreamHandler: StreamHandler

@@ -4,9 +4,12 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     dartOut: 'lib/src/messages.g.dart',
     dartOptions: DartOptions(),
-    kotlinOut: 'android/src/main/kotlin/no/nordicsemi/android/mcumgr_flutter/Messages.g.kt',
-    kotlinOptions: KotlinOptions(package: "no.nordicsemi.android.mcumgr_flutter"),
-    swiftOut: 'darwin/Classes/Messages.g.swift',
+    kotlinOut:
+        'android/src/main/kotlin/no/nordicsemi/android/mcumgr_flutter/Messages.g.kt',
+    kotlinOptions: KotlinOptions(
+      package: "no.nordicsemi.android.mcumgr_flutter",
+    ),
+    swiftOut: 'darwin/mcumgr_flutter/Sources/mcumgr_flutter/messages.g.swift',
     swiftOptions: SwiftOptions(),
   ),
 )
@@ -32,7 +35,11 @@ class OnDownloadFailedEvent extends DownloadCallbackEvent {
   final String? cause;
   final String remoteId;
   final String path;
-  OnDownloadFailedEvent({required this.cause, required this.remoteId, required this.path});
+  OnDownloadFailedEvent({
+    required this.cause,
+    required this.remoteId,
+    required this.path,
+  });
 }
 
 class OnDownloadCancelledEvent extends DownloadCallbackEvent {
@@ -53,7 +60,11 @@ class OnDownloadCompletedEvent extends DownloadCallbackEvent {
   /// The raw bytes of the file.
   final Uint8List bytes;
 
-  OnDownloadCompletedEvent(this.bytes, {required this.remoteId, required this.path});
+  OnDownloadCompletedEvent(
+    this.bytes, {
+    required this.remoteId,
+    required this.path,
+  });
 }
 
 class ConnectionStateEvent {

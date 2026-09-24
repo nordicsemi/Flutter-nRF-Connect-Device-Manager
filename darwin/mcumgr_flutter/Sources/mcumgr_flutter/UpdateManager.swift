@@ -8,6 +8,11 @@
 import Foundation
 import iOSMcuManagerLibrary
 import CoreBluetooth
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 protocol UpdateManagerDelegate: AnyObject {
     func updateCompleted(manager: UpdateManager)

@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 /// Methods which Flutter sends to platform side
 public enum FlutterMethod: String {

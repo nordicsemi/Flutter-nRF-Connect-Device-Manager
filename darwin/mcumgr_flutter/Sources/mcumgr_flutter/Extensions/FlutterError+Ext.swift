@@ -6,6 +6,11 @@
 //
 
 import Foundation
+#if os(iOS)
+import Flutter
+#elseif os(macOS)
+import FlutterMacOS
+#endif
 
 extension FlutterError: @retroactive Error {
     convenience init(error: Error, code: ErrorCode = .platformError, call: FlutterMethodCall? = nil) {
