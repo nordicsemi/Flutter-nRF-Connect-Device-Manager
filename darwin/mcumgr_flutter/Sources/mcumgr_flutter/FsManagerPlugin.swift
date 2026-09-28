@@ -73,22 +73,20 @@ class FsManagerPlugin : FsManagerApi {
         managers[remoteId]?.cancelTransfer()
     }
     
-    func status(remoteId: String, path: String, completion: @escaping (Result<Int64, Error>) -> Void) {
-        do {
-            let mgr = try getManager(remoteId)
+    func status(remoteId: String, path: String) async throws -> Int64 {
+        let mgr = try getManager(remoteId)
+        return try await withCheckedThrowingContinuation { continuation in
             mgr.status(
                 name: path
             ) { response, error in
-                if error != nil {
-                    completion(Result.failure(error!))
+                if let error = error {
+                    continuation.resume(throwing: error)
                 } else if response == nil || response?.len == nil {
-                    completion(Result.failure(PigeonError(code: "TODO", message: "Unexpected error: nil response/response params", details: nil)))
+                    continuation.resume(throwing: PigeonError(code: "TODO", message: "Unexpected error: nil response/response params", details: nil))
                 } else {
-                    completion(Result.success(Int64(bitPattern: (response?.len)!)))
+                    continuation.resume(returning: Int64(bitPattern: (response?.len)!))
                 }
             }
-        } catch {
-            completion(Result.failure(error))
         }
     }
     

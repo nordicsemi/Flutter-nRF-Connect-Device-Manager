@@ -5,6 +5,7 @@
 - Migrated iOS/macOS to Swift Package Manager, while remaining backwards compatible with CocoaPods (#156).
 - Updated Android `mcumgr-ble` from 2.9.0 to 3.4.1 (packages renamed from `io.runtime.mcumgr` to `no.nordicsemi.android.mcumgr`).
 - Updated `protobuf` from 5.1.0 to 6.1.0.
+- Updated `pigeon` (dev dependency) from 26.3.4 to 29.0.4. `@async` methods now generate as coroutines/`async` on Kotlin/Swift instead of callbacks; ported `CustomGroupManagerPlugin`/`FsManagerPlugin` on both platforms accordingly.
 
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
