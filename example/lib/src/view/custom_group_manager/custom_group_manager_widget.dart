@@ -55,7 +55,7 @@ class _ParamRow {
 }
 
 class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
-  SmpOp _op = SmpOp.write;
+  SmpOp _op = SmpOp.read;
   final _groupIdController = TextEditingController(text: '01');
   final _commandIdController = TextEditingController(text: '00');
   final List<_ParamRow> _params = [];
