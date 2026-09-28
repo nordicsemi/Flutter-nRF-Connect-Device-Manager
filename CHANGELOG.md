@@ -1,6 +1,6 @@
 ## 0.10.0
 - Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12.
-- Migrates to AGP 9's built-in Kotlin support and new DSL.
+- Migrates Android build files to AGP 9's new DSL. Keeps the classic Kotlin Gradle Plugin rather than AGP's built-in Kotlin, since AGP 9.4.1's bundled compiler can't yet read the Kotlin 2.4 metadata `mcumgr-ble` requires.
 - [Bugfix] Fixed Direct XIP target slot being dropped on Android, causing subsequent updates to silently transfer nothing (#172).
 - Migrated iOS/macOS to Swift Package Manager, while remaining backwards compatible with CocoaPods (#156).
 - Updated Android `mcumgr-ble` from 2.9.0 to 3.4.1 (packages renamed from `io.runtime.mcumgr` to `no.nordicsemi.android.mcumgr`).
