@@ -41,6 +41,17 @@ public class McumgrFlutterPlugin: NSObject, FlutterPlugin {
         return _fsManagerPlugin!
     }
 
+    private var _customGroupManagerPlugin: CustomGroupManagerPlugin?
+    private var customGroupManagerPlugin: CustomGroupManagerPlugin {
+        if _customGroupManagerPlugin == nil {
+            _customGroupManagerPlugin = CustomGroupManagerPlugin(
+                centralManagerProvider: { [weak self] in self?.centralManager },
+                messenger: binaryMessenger
+            )
+        }
+        return _customGroupManagerPlugin!
+    }
+
     // Log channels
     private let logEventChannel: FlutterEventChannel
 
@@ -67,6 +78,8 @@ public class McumgrFlutterPlugin: NSObject, FlutterPlugin {
 
         // Initialize FsManagerPlugin API setup
         _ = fsManagerPlugin
+        // Initialize CustomGroupManagerPlugin API setup
+        _ = customGroupManagerPlugin
     }
 
     public static func register(with registrar: FlutterPluginRegistrar) {
