@@ -1,10 +1,33 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:mcumgr_flutter/mcumgr_flutter.dart';
 import 'package:mcumgr_flutter_example/src/utils/string_ext.dart';
 import 'package:mcumgr_flutter_example/src/view/custom_group_manager/hex.dart';
+
+/// SMP operation codes accepted by [CustomGroupManager.sendCustomCommand].
+enum SmpOp {
+  read(0, 'Read'),
+  write(2, 'Write');
+
+  final int value;
+  final String label;
+
+  const SmpOp(this.value, this.label);
+}
+
+/// Extracts a short, human-readable description from an error - in
+/// particular, avoids printing a [PlatformException]'s `details`, where the
+/// native side (Android) embeds a full stack trace.
+String describeError(Object error) {
+  if (error is PlatformException) {
+    final message = error.message;
+    return message != null && message.isNotEmpty ? '${error.code}: $message' : error.code;
+  }
+  return error.toString();
+}
 
 class CustomGroupManagerWidget extends StatefulWidget {
   const CustomGroupManagerWidget({super.key});
@@ -32,7 +55,7 @@ class _ParamRow {
 }
 
 class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
-  final _opController = TextEditingController(text: '02');
+  SmpOp _op = SmpOp.write;
   final _groupIdController = TextEditingController(text: '41');
   final _commandIdController = TextEditingController(text: '00');
   final List<_ParamRow> _params = [];
@@ -52,7 +75,6 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
 
   @override
   void dispose() {
-    _opController.dispose();
     _groupIdController.dispose();
     _commandIdController.dispose();
     for (final param in _params) {
@@ -177,7 +199,7 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Expanded(child: _hexField(_opController, 'Op', 'hex, e.g. 02')),
+              Expanded(child: _opDropdown()),
               const SizedBox(width: 8),
               Expanded(child: _hexField(_groupIdController, 'Group', 'hex, e.g. 41')),
               const SizedBox(width: 8),
@@ -233,6 +255,20 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _opDropdown() {
+    return DropdownButtonFormField<SmpOp>(
+      initialValue: _op,
+      decoration: const InputDecoration(labelText: 'Op', border: OutlineInputBorder()),
+      items: [
+        for (final op in SmpOp.values)
+          DropdownMenuItem(value: op, child: Text(op.label)),
+      ],
+      onChanged: (op) {
+        if (op != null) setState(() => _op = op);
+      },
     );
   }
 
@@ -301,11 +337,9 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
     final manager = _manager;
     if (manager == null) return;
 
-    final int op;
     final int groupId;
     final int commandId;
     try {
-      op = parseHexInt(_opController.text);
       groupId = parseHexInt(_groupIdController.text);
       commandId = parseHexInt(_commandIdController.text);
     } catch (e) {
@@ -328,7 +362,7 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
       final response = await manager.sendCustomCommand(
         groupId: groupId,
         commandId: commandId,
-        op: op,
+        op: _op.value,
         payload: payload,
       );
       // The plugin API only returns the response payload, with its 8-byte
@@ -336,7 +370,7 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
       // header aren't available to display here.
       _addLog('← Response: ${formatHexBytes(response)}');
     } catch (e) {
-      _addLog('Error: $e', isError: true);
+      _addLog('Error: ${describeError(e)}', isError: true);
     } finally {
       setState(() {
         _sending = false;
