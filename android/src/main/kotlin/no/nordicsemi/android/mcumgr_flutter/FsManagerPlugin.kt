@@ -4,6 +4,8 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.os.Handler
 import io.flutter.plugin.common.BinaryMessenger
+import kotlin.coroutines.resumeWithException
+import kotlinx.coroutines.suspendCancellableCoroutine
 import no.nordicsemi.android.mcumgr.McuMgrCallback
 import no.nordicsemi.android.mcumgr.exception.McuMgrException
 import no.nordicsemi.android.mcumgr.managers.FsManager
@@ -105,21 +107,22 @@ class FsManagerPlugin(
         fsManagers[remoteId]?.cancelTransfer()
     }
 
-    override fun status(remoteId: String, path: String, callback: (Result<Long>) -> Unit) {
-        val mgr = getFsManager(remoteId)
-        mgr.status(
-            path,
-            object : McuMgrCallback<McuMgrFsStatusResponse> {
-                override fun onResponse(p0: McuMgrFsStatusResponse) {
-                    callback(Result.success(p0.len.toLong()))
-                }
+    override suspend fun status(remoteId: String, path: String): Long =
+        suspendCancellableCoroutine { cont ->
+            val mgr = getFsManager(remoteId)
+            mgr.status(
+                path,
+                object : McuMgrCallback<McuMgrFsStatusResponse> {
+                    override fun onResponse(p0: McuMgrFsStatusResponse) {
+                        cont.resume(p0.len.toLong(), onCancellation = null)
+                    }
 
-                override fun onError(p0: McuMgrException) {
-                    callback(Result.failure(p0))
+                    override fun onError(p0: McuMgrException) {
+                        cont.resumeWithException(p0)
+                    }
                 }
-            }
-        )
-    }
+            )
+        }
 
     override fun kill(remoteId: String) {
         fsManagers.remove(remoteId)?.transporter?.release()
