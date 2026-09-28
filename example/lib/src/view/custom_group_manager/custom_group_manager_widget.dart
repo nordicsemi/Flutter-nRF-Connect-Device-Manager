@@ -56,7 +56,7 @@ class _ParamRow {
 
 class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
   SmpOp _op = SmpOp.write;
-  final _groupIdController = TextEditingController(text: '41');
+  final _groupIdController = TextEditingController(text: '01');
   final _commandIdController = TextEditingController(text: '00');
   final List<_ParamRow> _params = [];
 
@@ -201,9 +201,13 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
             children: [
               Expanded(child: _opDropdown()),
               const SizedBox(width: 8),
-              Expanded(child: _hexField(_groupIdController, 'Group', 'hex, e.g. 41')),
+              Expanded(
+                child: _hexField(_groupIdController, 'Group', 'hex, e.g. 01', maxHexDigits: 4),
+              ),
               const SizedBox(width: 8),
-              Expanded(child: _hexField(_commandIdController, 'Command', 'hex, e.g. 00')),
+              Expanded(
+                child: _hexField(_commandIdController, 'Command', 'hex, e.g. 00', maxHexDigits: 2),
+              ),
             ],
           ),
         ),
@@ -272,11 +276,17 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
     );
   }
 
-  Widget _hexField(TextEditingController controller, String label, String hint) {
+  /// A hex-digit-only input field, capped at [maxHexDigits] digits - e.g. 4
+  /// for a UInt16 (Group ID) or 2 for a UInt8 (Command ID).
+  Widget _hexField(TextEditingController controller, String label, String hint, {int? maxHexDigits}) {
     return TextField(
       controller: controller,
       autocorrect: false,
       enableSuggestions: false,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp('[0-9a-fA-F]')),
+        if (maxHexDigits != null) LengthLimitingTextInputFormatter(maxHexDigits),
+      ],
       decoration: InputDecoration(labelText: label, hintText: hint, border: const OutlineInputBorder()),
     );
   }
@@ -344,6 +354,17 @@ class _CustomGroupManagerWidgetState extends State<CustomGroupManagerWidget> {
       commandId = parseHexInt(_commandIdController.text);
     } catch (e) {
       _addLog('Invalid hex input: $e', isError: true);
+      return;
+    }
+    // Group ID is a UInt16 and Command ID a UInt8 in the SMP header; the
+    // hex fields are already capped to 4/2 digits, but a pasted value could
+    // still slip through, so double-check here too.
+    if (groupId < 0 || groupId > 0xFFFF) {
+      _addLog('Group must fit in 16 bits (0-FFFF)', isError: true);
+      return;
+    }
+    if (commandId < 0 || commandId > 0xFF) {
+      _addLog('Command must fit in 8 bits (0-FF)', isError: true);
       return;
     }
 
