@@ -1,5 +1,6 @@
 ## 0.10.0
 - Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12.
+- Migrates to AGP 9's built-in Kotlin support and new DSL.
 
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.

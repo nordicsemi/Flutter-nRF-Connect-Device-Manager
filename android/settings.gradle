@@ -1,1 +1,18 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id 'com.android.library' version '9.4.1'
+        id 'com.squareup.wire' version '7.0.4'
+    }
+}
+
+plugins {
+    id 'com.android.library' apply false
+    id 'com.squareup.wire' apply false
+}
+
 rootProject.name = 'mcumgr_flutter'

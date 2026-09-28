@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id "com.android.application"
-    id "kotlin-android"
+    id "org.jetbrains.kotlin.android"
     id "dev.flutter.flutter-gradle-plugin"
 }
 
@@ -25,7 +25,8 @@ if (flutterVersionName == null) {
 }
 
 android {
-    compileSdk = 36
+    namespace = 'no.nordicsemi.android.example.mcumgr_flutter'
+    compileSdk = 37
     ndkVersion = "28.2.13676358"
 
     sourceSets {
@@ -33,7 +34,7 @@ android {
     }
 
     lint {
-        disable 'InvalidPackage'
+        disable += 'InvalidPackage'
     }
 
     compileOptions {
@@ -41,26 +42,25 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_21
-        }
-    }
-
     defaultConfig {
-        applicationId "no.nordicsemi.android.example.mcumgr_flutter"
+        applicationId = "no.nordicsemi.android.example.mcumgr_flutter"
         minSdk = flutter.minSdkVersion
-        targetSdk = 36
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        targetSdk = 37
+        versionCode = flutterVersionCode.toInteger()
+        versionName = flutterVersionName
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            signingConfig = signingConfigs.debug
         }
     }
-    namespace 'no.nordicsemi.android.example.mcumgr_flutter'
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
+    }
 }
 
 flutter {
