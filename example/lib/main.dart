@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mcumgr_flutter_example/src/providers/firmware_update_request_provider.dart';
+import 'package:mcumgr_flutter_example/src/view/custom_group_manager/custom_group_manager_page.dart';
 import 'package:mcumgr_flutter_example/src/view/firmware_update/firmware_update_widget.dart';
 import 'package:mcumgr_flutter_example/src/view/settings_manager/settings_manager_page.dart';
 import 'package:provider/provider.dart';
@@ -70,6 +71,26 @@ class MainMenuPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const SettingsManagerPage(),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 8),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.terminal, size: 40),
+              title: const Text(
+                'Custom Group Manager',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text('Send raw SMP commands to a custom group'),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CustomGroupManagerPage(),
                   ),
                 );
               },

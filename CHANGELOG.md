@@ -7,6 +7,7 @@
 - Updated `protobuf` from 5.1.0 to 6.1.0.
 - Updated `pigeon` (dev dependency) from 26.3.4 to 29.0.4. `@async` methods now generate as coroutines/`async` on Kotlin/Swift instead of callbacks; ported `CustomGroupManagerPlugin`/`FsManagerPlugin` on both platforms accordingly.
 - Implemented `CustomGroupManagerApi` (the custom SMP command feature) on iOS/macOS; it was Android-only since it was introduced.
+- Added a "Custom Group Manager" screen to the example app for sending ad-hoc SMP commands with a hex op/group/command and string-keyed payload parameters.
 
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
