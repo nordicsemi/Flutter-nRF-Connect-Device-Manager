@@ -1,3 +1,6 @@
+## 0.10.0
+- Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12.
+
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
 
