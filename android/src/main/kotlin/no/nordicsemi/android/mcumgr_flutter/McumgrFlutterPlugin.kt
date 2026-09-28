@@ -10,11 +10,11 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.runtime.mcumgr.McuMgrCallback
-import io.runtime.mcumgr.dfu.mcuboot.FirmwareUpgradeManager
-import io.runtime.mcumgr.exception.McuMgrException
-import io.runtime.mcumgr.response.img.McuMgrImageResponse
-import io.runtime.mcumgr.response.img.McuMgrImageStateResponse
+import no.nordicsemi.android.mcumgr.McuMgrCallback
+import no.nordicsemi.android.mcumgr.dfu.mcuboot.FirmwareUpgradeManager
+import no.nordicsemi.android.mcumgr.exception.McuMgrException
+import no.nordicsemi.android.mcumgr.response.img.McuMgrImageResponse
+import no.nordicsemi.android.mcumgr.response.img.McuMgrImageStateResponse
 import no.nordicsemi.android.mcumgr_flutter.ext.toProto
 import no.nordicsemi.android.mcumgr_flutter.gen.ProtoFirmwareUpgradeConfiguration
 import no.nordicsemi.android.mcumgr_flutter.gen.ProtoListImagesResponse

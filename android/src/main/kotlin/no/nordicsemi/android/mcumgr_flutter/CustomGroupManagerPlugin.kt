@@ -4,10 +4,10 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.os.Handler
 import io.flutter.plugin.common.BinaryMessenger
-import io.runtime.mcumgr.McuMgrCallback
-import io.runtime.mcumgr.McuMgrTransport
-import io.runtime.mcumgr.exception.McuMgrException
-import io.runtime.mcumgr.response.McuMgrResponse
+import no.nordicsemi.android.mcumgr.McuMgrCallback
+import no.nordicsemi.android.mcumgr.McuMgrTransport
+import no.nordicsemi.android.mcumgr.exception.McuMgrException
+import no.nordicsemi.android.mcumgr.response.McuMgrResponse
 import no.nordicsemi.android.mcumgr_flutter.logging.LoggableMcuMgrBleTransport
 import no.nordicsemi.android.mcumgr_flutter.utils.ConnectionStateStreamHandler
 import no.nordicsemi.android.mcumgr_flutter.utils.StreamHandler

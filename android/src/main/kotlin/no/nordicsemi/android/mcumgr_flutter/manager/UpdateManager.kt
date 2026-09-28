@@ -1,15 +1,15 @@
 package no.nordicsemi.android.mcumgr_flutter.manager
 
 import android.util.Log
-import io.runtime.mcumgr.ble.McuMgrBleTransport
-import io.runtime.mcumgr.dfu.FirmwareUpgradeCallback
-import io.runtime.mcumgr.dfu.FirmwareUpgradeController
-import io.runtime.mcumgr.dfu.mcuboot.FirmwareUpgradeManager
-import io.runtime.mcumgr.dfu.mcuboot.FirmwareUpgradeManager.State
-import io.runtime.mcumgr.dfu.mcuboot.model.ImageSet
-import io.runtime.mcumgr.dfu.mcuboot.model.TargetImage
-import io.runtime.mcumgr.exception.McuMgrException
-import io.runtime.mcumgr.managers.ImageManager
+import no.nordicsemi.android.mcumgr.ble.McuMgrBleTransport
+import no.nordicsemi.android.mcumgr.dfu.FirmwareUpgradeCallback
+import no.nordicsemi.android.mcumgr.dfu.FirmwareUpgradeController
+import no.nordicsemi.android.mcumgr.dfu.mcuboot.FirmwareUpgradeManager
+import no.nordicsemi.android.mcumgr.dfu.mcuboot.FirmwareUpgradeManager.State
+import no.nordicsemi.android.mcumgr.dfu.mcuboot.model.ImageSet
+import no.nordicsemi.android.mcumgr.dfu.mcuboot.model.TargetImage
+import no.nordicsemi.android.mcumgr.exception.McuMgrException
+import no.nordicsemi.android.mcumgr.managers.ImageManager
 import no.nordicsemi.android.mcumgr_flutter.ext.shouldLog
 import no.nordicsemi.android.mcumgr_flutter.ext.toProto
 import no.nordicsemi.android.mcumgr_flutter.gen.*

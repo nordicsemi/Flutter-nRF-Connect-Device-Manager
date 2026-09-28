@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import io.flutter.Log
-import io.runtime.mcumgr.ble.McuMgrBleTransport
+import no.nordicsemi.android.mcumgr.ble.McuMgrBleTransport
 import no.nordicsemi.android.mcumgr_flutter.gen.*
 import no.nordicsemi.android.mcumgr_flutter.utils.StreamHandler
 

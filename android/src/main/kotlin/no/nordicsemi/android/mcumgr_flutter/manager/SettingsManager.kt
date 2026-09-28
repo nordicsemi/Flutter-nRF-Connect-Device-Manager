@@ -3,15 +3,15 @@ package no.nordicsemi.android.mcumgr_flutter.manager
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import io.flutter.plugin.common.MethodChannel
-import io.runtime.mcumgr.McuMgrCallback
-import io.runtime.mcumgr.ble.McuMgrBleTransport
-import io.runtime.mcumgr.exception.McuMgrException
-import io.runtime.mcumgr.response.McuMgrResponse
-import io.runtime.mcumgr.response.settings.McuMgrSettingsReadResponse
-import io.runtime.mcumgr.util.CBOR
+import no.nordicsemi.android.mcumgr.McuMgrCallback
+import no.nordicsemi.android.mcumgr.ble.McuMgrBleTransport
+import no.nordicsemi.android.mcumgr.exception.McuMgrException
+import no.nordicsemi.android.mcumgr.response.McuMgrResponse
+import no.nordicsemi.android.mcumgr.response.settings.McuMgrSettingsReadResponse
+import no.nordicsemi.android.mcumgr.util.CBOR
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
-import io.runtime.mcumgr.managers.SettingsManager as McuMgrSettingsManager
+import no.nordicsemi.android.mcumgr.managers.SettingsManager as McuMgrSettingsManager
 
 private const val errorCode = "MCUMGR_ERROR"
 

@@ -49,7 +49,7 @@ wire {
 }
 
 dependencies {
-    implementation 'no.nordicsemi.android:mcumgr-ble:2.9.0'
+    implementation 'no.nordicsemi.android:mcumgr-ble:3.4.1'
 
     // Keep protobuf-lite below 4.34 to avoid DescriptorProtos duplication with
     // Firebase's protolite-well-known-types in host apps.
