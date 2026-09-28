@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:mcumgr_flutter_example/src/model/firmware_image.dart';
@@ -19,27 +17,23 @@ class FirmwareList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // Navigator.pop(context, 'Firmware');
-          FilePickerResult? result = await FilePicker.pickFiles(
+          final result = await FilePicker.pickFile(
             type: FileType.custom,
             allowedExtensions: ['zip', 'bin'],
-            withData: true, // Required for Web to populate .bytes
           );
           if (result == null) {
             return;
           }
-          final ext = result.files.first.extension;
-          final fwType =
-              ext == 'zip' ? FirmwareType.multiImage : FirmwareType.singleImage;
+          final fwType = result.extension == 'zip'
+              ? FirmwareType.multiImage
+              : FirmwareType.singleImage;
 
-          final firstResult = result.files.first;
-
-          final bytes =
-              firstResult.bytes ?? await File(firstResult.path!).readAsBytes();
+          final bytes = await result.readAsBytes();
 
           final fw = LocalFirmware(
             data: bytes,
             type: fwType,
-            name: firstResult.name,
+            name: result.name,
           );
 
           context.read<FirmwareUpdateRequestProvider>().setFirmware(fw);
