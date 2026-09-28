@@ -8,6 +8,7 @@
 - Updated `pigeon` (dev dependency) from 26.3.4 to 29.0.4. `@async` methods now generate as coroutines/`async` on Kotlin/Swift instead of callbacks; ported `CustomGroupManagerPlugin`/`FsManagerPlugin` on both platforms accordingly.
 - Implemented `CustomGroupManagerApi` (the custom SMP command feature) on iOS/macOS; it was Android-only since it was introduced.
 - Added a "Custom Group Manager" screen to the example app for sending ad-hoc SMP commands with a hex op/group/command and string-keyed payload parameters.
+- Added `meta` as a direct dependency; it was only resolved transitively, which `dart pub publish` flags as an error since `lib/src/messages.g.dart` imports it directly.
 
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
