@@ -12,6 +12,7 @@ dependencies:
   fixnum: ^1.1.1
   flutter:
     sdk: flutter
+  meta: ^1.9.0
   protobuf: ^6.1.0
   rxdart: ^0.28.0
   archive: ^4.0.9
