@@ -29,7 +29,7 @@ class ProtoUpdateCallArgument extends $pb.GeneratedMessage {
     $core.List<$core.int>? firmwareData,
     ProtoFirmwareUpgradeConfiguration? configuration,
   }) {
-    final result = create();
+    final result = ProtoUpdateCallArgument._();
     if (deviceUuid != null) result.deviceUuid = deviceUuid;
     if (hash != null) result.hash = hash;
     if (firmwareData != null) result.firmwareData = firmwareData;
@@ -41,14 +41,14 @@ class ProtoUpdateCallArgument extends $pb.GeneratedMessage {
 
   factory ProtoUpdateCallArgument.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoUpdateCallArgument()..mergeFromBuffer(data, registry);
   factory ProtoUpdateCallArgument.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoUpdateCallArgument()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoUpdateCallArgument',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoUpdateCallArgument.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'deviceUuid')
     ..a<$core.List<$core.int>>(
         2, _omitFieldNames ? '' : 'hash', $pb.PbFieldType.OY)
@@ -56,7 +56,7 @@ class ProtoUpdateCallArgument extends $pb.GeneratedMessage {
         3, _omitFieldNames ? '' : 'firmwareData', $pb.PbFieldType.OY)
     ..aOM<ProtoFirmwareUpgradeConfiguration>(
         4, _omitFieldNames ? '' : 'configuration',
-        subBuilder: ProtoFirmwareUpgradeConfiguration.create)
+        subBuilder: ProtoFirmwareUpgradeConfiguration.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -71,12 +71,16 @@ class ProtoUpdateCallArgument extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoUpdateCallArgument() / ProtoUpdateCallArgument.new instead')
   static ProtoUpdateCallArgument create() => ProtoUpdateCallArgument._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoUpdateCallArgument._();
   @$core.override
-  ProtoUpdateCallArgument createEmptyInstance() => create();
+  ProtoUpdateCallArgument createEmptyInstance() => ProtoUpdateCallArgument._();
   @$core.pragma('dart2js:noInline')
   static ProtoUpdateCallArgument getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoUpdateCallArgument>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoUpdateCallArgument>(
+          ProtoUpdateCallArgument.$_createMessage);
   static ProtoUpdateCallArgument? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -123,7 +127,7 @@ class ProtoError extends $pb.GeneratedMessage {
   factory ProtoError({
     $core.String? localizedDescription,
   }) {
-    final result = create();
+    final result = ProtoError._();
     if (localizedDescription != null)
       result.localizedDescription = localizedDescription;
     return result;
@@ -133,14 +137,14 @@ class ProtoError extends $pb.GeneratedMessage {
 
   factory ProtoError.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoError()..mergeFromBuffer(data, registry);
   factory ProtoError.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoError()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoError',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoError.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'localizedDescription',
         protoName: 'localizedDescription')
     ..hasRequiredFields = false;
@@ -155,12 +159,14 @@ class ProtoError extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ProtoError() / ProtoError.new instead')
   static ProtoError create() => ProtoError._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoError._();
   @$core.override
-  ProtoError createEmptyInstance() => create();
+  ProtoError createEmptyInstance() => ProtoError._();
   @$core.pragma('dart2js:noInline')
   static ProtoError getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoError>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoError>(ProtoError.$_createMessage);
   static ProtoError? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -180,7 +186,7 @@ class ProtoImage extends $pb.GeneratedMessage {
     $core.List<$core.int>? hash,
     $core.List<$core.int>? data,
   }) {
-    final result = create();
+    final result = ProtoImage._();
     if (image != null) result.image = image;
     if (slot != null) result.slot = slot;
     if (hash != null) result.hash = hash;
@@ -192,14 +198,14 @@ class ProtoImage extends $pb.GeneratedMessage {
 
   factory ProtoImage.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoImage()..mergeFromBuffer(data, registry);
   factory ProtoImage.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoImage()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoImage',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoImage.$_createMessage)
     ..aI(1, _omitFieldNames ? '' : 'image')
     ..aI(2, _omitFieldNames ? '' : 'slot')
     ..a<$core.List<$core.int>>(
@@ -218,12 +224,14 @@ class ProtoImage extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ProtoImage() / ProtoImage.new instead')
   static ProtoImage create() => ProtoImage._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoImage._();
   @$core.override
-  ProtoImage createEmptyInstance() => create();
+  ProtoImage createEmptyInstance() => ProtoImage._();
   @$core.pragma('dart2js:noInline')
   static ProtoImage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoImage>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoImage>(ProtoImage.$_createMessage);
   static ProtoImage? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -269,7 +277,7 @@ class ProtoUpdateWithImageCallArguments extends $pb.GeneratedMessage {
     $core.Iterable<ProtoImage>? images,
     ProtoFirmwareUpgradeConfiguration? configuration,
   }) {
-    final result = create();
+    final result = ProtoUpdateWithImageCallArguments._();
     if (deviceUuid != null) result.deviceUuid = deviceUuid;
     if (images != null) result.images.addAll(images);
     if (configuration != null) result.configuration = configuration;
@@ -281,20 +289,20 @@ class ProtoUpdateWithImageCallArguments extends $pb.GeneratedMessage {
   factory ProtoUpdateWithImageCallArguments.fromBuffer(
           $core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoUpdateWithImageCallArguments()..mergeFromBuffer(data, registry);
   factory ProtoUpdateWithImageCallArguments.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoUpdateWithImageCallArguments()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoUpdateWithImageCallArguments',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoUpdateWithImageCallArguments.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'deviceUuid')
     ..pPM<ProtoImage>(2, _omitFieldNames ? '' : 'images',
-        subBuilder: ProtoImage.create)
+        subBuilder: ProtoImage.$_createMessage)
     ..aOM<ProtoFirmwareUpgradeConfiguration>(
         3, _omitFieldNames ? '' : 'configuration',
-        subBuilder: ProtoFirmwareUpgradeConfiguration.create)
+        subBuilder: ProtoFirmwareUpgradeConfiguration.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -310,14 +318,19 @@ class ProtoUpdateWithImageCallArguments extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoUpdateWithImageCallArguments() / ProtoUpdateWithImageCallArguments.new instead')
   static ProtoUpdateWithImageCallArguments create() =>
       ProtoUpdateWithImageCallArguments._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      ProtoUpdateWithImageCallArguments._();
   @$core.override
-  ProtoUpdateWithImageCallArguments createEmptyInstance() => create();
+  ProtoUpdateWithImageCallArguments createEmptyInstance() =>
+      ProtoUpdateWithImageCallArguments._();
   @$core.pragma('dart2js:noInline')
   static ProtoUpdateWithImageCallArguments getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ProtoUpdateWithImageCallArguments>(
-          create);
+          ProtoUpdateWithImageCallArguments.$_createMessage);
   static ProtoUpdateWithImageCallArguments? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -353,7 +366,7 @@ class ProtoUpdateStateChangesStreamArg extends $pb.GeneratedMessage {
     ProtoError? error,
     ProtoUpdateStateChanges? updateStateChanges,
   }) {
-    final result = create();
+    final result = ProtoUpdateStateChangesStreamArg._();
     if (uuid != null) result.uuid = uuid;
     if (done != null) result.done = done;
     if (error != null) result.error = error;
@@ -367,22 +380,22 @@ class ProtoUpdateStateChangesStreamArg extends $pb.GeneratedMessage {
   factory ProtoUpdateStateChangesStreamArg.fromBuffer(
           $core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoUpdateStateChangesStreamArg()..mergeFromBuffer(data, registry);
   factory ProtoUpdateStateChangesStreamArg.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoUpdateStateChangesStreamArg()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoUpdateStateChangesStreamArg',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoUpdateStateChangesStreamArg.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..aOB(2, _omitFieldNames ? '' : 'done')
     ..aOM<ProtoError>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoError.create)
+        subBuilder: ProtoError.$_createMessage)
     ..aOM<ProtoUpdateStateChanges>(
         4, _omitFieldNames ? '' : 'updateStateChanges',
         protoName: 'updateStateChanges',
-        subBuilder: ProtoUpdateStateChanges.create)
+        subBuilder: ProtoUpdateStateChanges.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -398,14 +411,19 @@ class ProtoUpdateStateChangesStreamArg extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoUpdateStateChangesStreamArg() / ProtoUpdateStateChangesStreamArg.new instead')
   static ProtoUpdateStateChangesStreamArg create() =>
       ProtoUpdateStateChangesStreamArg._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      ProtoUpdateStateChangesStreamArg._();
   @$core.override
-  ProtoUpdateStateChangesStreamArg createEmptyInstance() => create();
+  ProtoUpdateStateChangesStreamArg createEmptyInstance() =>
+      ProtoUpdateStateChangesStreamArg._();
   @$core.pragma('dart2js:noInline')
   static ProtoUpdateStateChangesStreamArg getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ProtoUpdateStateChangesStreamArg>(
-          create);
+          ProtoUpdateStateChangesStreamArg.$_createMessage);
   static ProtoUpdateStateChangesStreamArg? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -455,7 +473,7 @@ class ProtoUpdateStateChanges extends $pb.GeneratedMessage {
     ProtoUpdateStateChanges_FirmwareUpgradeState? newState,
     $core.bool? canceled,
   }) {
-    final result = create();
+    final result = ProtoUpdateStateChanges._();
     if (oldState != null) result.oldState = oldState;
     if (newState != null) result.newState = newState;
     if (canceled != null) result.canceled = canceled;
@@ -466,14 +484,14 @@ class ProtoUpdateStateChanges extends $pb.GeneratedMessage {
 
   factory ProtoUpdateStateChanges.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoUpdateStateChanges()..mergeFromBuffer(data, registry);
   factory ProtoUpdateStateChanges.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoUpdateStateChanges()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoUpdateStateChanges',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoUpdateStateChanges.$_createMessage)
     ..aE<ProtoUpdateStateChanges_FirmwareUpgradeState>(
         1, _omitFieldNames ? '' : 'oldState',
         protoName: 'oldState',
@@ -497,12 +515,16 @@ class ProtoUpdateStateChanges extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoUpdateStateChanges() / ProtoUpdateStateChanges.new instead')
   static ProtoUpdateStateChanges create() => ProtoUpdateStateChanges._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoUpdateStateChanges._();
   @$core.override
-  ProtoUpdateStateChanges createEmptyInstance() => create();
+  ProtoUpdateStateChanges createEmptyInstance() => ProtoUpdateStateChanges._();
   @$core.pragma('dart2js:noInline')
   static ProtoUpdateStateChanges getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoUpdateStateChanges>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoUpdateStateChanges>(
+          ProtoUpdateStateChanges.$_createMessage);
   static ProtoUpdateStateChanges? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -544,7 +566,7 @@ class ProtoFirmwareUpgradeConfiguration extends $pb.GeneratedMessage {
     $fixnum.Int64? reassemblyBufferSize,
     ProtoFirmwareUpgradeConfiguration_FirmwareUpgradeMode? firmwareUpgradeMode,
   }) {
-    final result = create();
+    final result = ProtoFirmwareUpgradeConfiguration._();
     if (estimatedSwapTimeMs != null)
       result.estimatedSwapTimeMs = estimatedSwapTimeMs;
     if (eraseAppSettings != null) result.eraseAppSettings = eraseAppSettings;
@@ -562,14 +584,14 @@ class ProtoFirmwareUpgradeConfiguration extends $pb.GeneratedMessage {
   factory ProtoFirmwareUpgradeConfiguration.fromBuffer(
           $core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoFirmwareUpgradeConfiguration()..mergeFromBuffer(data, registry);
   factory ProtoFirmwareUpgradeConfiguration.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoFirmwareUpgradeConfiguration()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoFirmwareUpgradeConfiguration',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoFirmwareUpgradeConfiguration.$_createMessage)
     ..aInt64(1, _omitFieldNames ? '' : 'estimatedSwapTimeMs',
         protoName: 'estimatedSwapTimeMs')
     ..aOB(2, _omitFieldNames ? '' : 'eraseAppSettings',
@@ -604,14 +626,19 @@ class ProtoFirmwareUpgradeConfiguration extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoFirmwareUpgradeConfiguration() / ProtoFirmwareUpgradeConfiguration.new instead')
   static ProtoFirmwareUpgradeConfiguration create() =>
       ProtoFirmwareUpgradeConfiguration._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      ProtoFirmwareUpgradeConfiguration._();
   @$core.override
-  ProtoFirmwareUpgradeConfiguration createEmptyInstance() => create();
+  ProtoFirmwareUpgradeConfiguration createEmptyInstance() =>
+      ProtoFirmwareUpgradeConfiguration._();
   @$core.pragma('dart2js:noInline')
   static ProtoFirmwareUpgradeConfiguration getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ProtoFirmwareUpgradeConfiguration>(
-          create);
+          ProtoFirmwareUpgradeConfiguration.$_createMessage);
   static ProtoFirmwareUpgradeConfiguration? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -682,7 +709,7 @@ class ProtoProgressUpdateStreamArg extends $pb.GeneratedMessage {
     ProtoError? error,
     ProtoProgressUpdate? progressUpdate,
   }) {
-    final result = create();
+    final result = ProtoProgressUpdateStreamArg._();
     if (uuid != null) result.uuid = uuid;
     if (done != null) result.done = done;
     if (error != null) result.error = error;
@@ -694,20 +721,21 @@ class ProtoProgressUpdateStreamArg extends $pb.GeneratedMessage {
 
   factory ProtoProgressUpdateStreamArg.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoProgressUpdateStreamArg()..mergeFromBuffer(data, registry);
   factory ProtoProgressUpdateStreamArg.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoProgressUpdateStreamArg()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoProgressUpdateStreamArg',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoProgressUpdateStreamArg.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..aOB(2, _omitFieldNames ? '' : 'done')
     ..aOM<ProtoError>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoError.create)
+        subBuilder: ProtoError.$_createMessage)
     ..aOM<ProtoProgressUpdate>(4, _omitFieldNames ? '' : 'progressUpdate',
-        protoName: 'progressUpdate', subBuilder: ProtoProgressUpdate.create)
+        protoName: 'progressUpdate',
+        subBuilder: ProtoProgressUpdate.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -723,13 +751,19 @@ class ProtoProgressUpdateStreamArg extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoProgressUpdateStreamArg() / ProtoProgressUpdateStreamArg.new instead')
   static ProtoProgressUpdateStreamArg create() =>
       ProtoProgressUpdateStreamArg._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      ProtoProgressUpdateStreamArg._();
   @$core.override
-  ProtoProgressUpdateStreamArg createEmptyInstance() => create();
+  ProtoProgressUpdateStreamArg createEmptyInstance() =>
+      ProtoProgressUpdateStreamArg._();
   @$core.pragma('dart2js:noInline')
   static ProtoProgressUpdateStreamArg getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoProgressUpdateStreamArg>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoProgressUpdateStreamArg>(
+          ProtoProgressUpdateStreamArg.$_createMessage);
   static ProtoProgressUpdateStreamArg? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -779,7 +813,7 @@ class ProtoProgressUpdate extends $pb.GeneratedMessage {
     $fixnum.Int64? imageSize,
     $core.double? timestamp,
   }) {
-    final result = create();
+    final result = ProtoProgressUpdate._();
     if (bytesSent != null) result.bytesSent = bytesSent;
     if (imageSize != null) result.imageSize = imageSize;
     if (timestamp != null) result.timestamp = timestamp;
@@ -790,14 +824,14 @@ class ProtoProgressUpdate extends $pb.GeneratedMessage {
 
   factory ProtoProgressUpdate.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoProgressUpdate()..mergeFromBuffer(data, registry);
   factory ProtoProgressUpdate.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoProgressUpdate()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoProgressUpdate',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoProgressUpdate.$_createMessage)
     ..a<$fixnum.Int64>(
         1, _omitFieldNames ? '' : 'bytesSent', $pb.PbFieldType.OU6,
         protoName: 'bytesSent', defaultOrMaker: $fixnum.Int64.ZERO)
@@ -818,12 +852,16 @@ class ProtoProgressUpdate extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core
+      .Deprecated('Use ProtoProgressUpdate() / ProtoProgressUpdate.new instead')
   static ProtoProgressUpdate create() => ProtoProgressUpdate._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoProgressUpdate._();
   @$core.override
-  ProtoProgressUpdate createEmptyInstance() => create();
+  ProtoProgressUpdate createEmptyInstance() => ProtoProgressUpdate._();
   @$core.pragma('dart2js:noInline')
   static ProtoProgressUpdate getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoProgressUpdate>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoProgressUpdate>(
+          ProtoProgressUpdate.$_createMessage);
   static ProtoProgressUpdate? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -862,7 +900,7 @@ class ProtoLogMessageStreamArg extends $pb.GeneratedMessage {
     ProtoError? error,
     ProtoLogMessage? protoLogMessage,
   }) {
-    final result = create();
+    final result = ProtoLogMessageStreamArg._();
     if (uuid != null) result.uuid = uuid;
     if (done != null) result.done = done;
     if (error != null) result.error = error;
@@ -874,20 +912,21 @@ class ProtoLogMessageStreamArg extends $pb.GeneratedMessage {
 
   factory ProtoLogMessageStreamArg.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoLogMessageStreamArg()..mergeFromBuffer(data, registry);
   factory ProtoLogMessageStreamArg.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoLogMessageStreamArg()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoLogMessageStreamArg',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoLogMessageStreamArg.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..aOB(2, _omitFieldNames ? '' : 'done')
     ..aOM<ProtoError>(3, _omitFieldNames ? '' : 'error',
-        subBuilder: ProtoError.create)
+        subBuilder: ProtoError.$_createMessage)
     ..aOM<ProtoLogMessage>(4, _omitFieldNames ? '' : 'protoLogMessage',
-        protoName: 'protoLogMessage', subBuilder: ProtoLogMessage.create)
+        protoName: 'protoLogMessage',
+        subBuilder: ProtoLogMessage.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -902,12 +941,17 @@ class ProtoLogMessageStreamArg extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoLogMessageStreamArg() / ProtoLogMessageStreamArg.new instead')
   static ProtoLogMessageStreamArg create() => ProtoLogMessageStreamArg._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoLogMessageStreamArg._();
   @$core.override
-  ProtoLogMessageStreamArg createEmptyInstance() => create();
+  ProtoLogMessageStreamArg createEmptyInstance() =>
+      ProtoLogMessageStreamArg._();
   @$core.pragma('dart2js:noInline')
   static ProtoLogMessageStreamArg getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoLogMessageStreamArg>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoLogMessageStreamArg>(
+          ProtoLogMessageStreamArg.$_createMessage);
   static ProtoLogMessageStreamArg? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -958,7 +1002,7 @@ class ProtoLogMessage extends $pb.GeneratedMessage {
     ProtoLogMessage_LogLevel? logLevel,
     $fixnum.Int64? logDateTime,
   }) {
-    final result = create();
+    final result = ProtoLogMessage._();
     if (message != null) result.message = message;
     if (logCategory != null) result.logCategory = logCategory;
     if (logLevel != null) result.logLevel = logLevel;
@@ -970,14 +1014,14 @@ class ProtoLogMessage extends $pb.GeneratedMessage {
 
   factory ProtoLogMessage.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoLogMessage()..mergeFromBuffer(data, registry);
   factory ProtoLogMessage.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoLogMessage()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoLogMessage',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoLogMessage.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'message')
     ..aE<ProtoLogMessage_LogCategory>(2, _omitFieldNames ? '' : 'logCategory',
         protoName: 'logCategory',
@@ -998,12 +1042,15 @@ class ProtoLogMessage extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ProtoLogMessage() / ProtoLogMessage.new instead')
   static ProtoLogMessage create() => ProtoLogMessage._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoLogMessage._();
   @$core.override
-  ProtoLogMessage createEmptyInstance() => create();
+  ProtoLogMessage createEmptyInstance() => ProtoLogMessage._();
   @$core.pragma('dart2js:noInline')
-  static ProtoLogMessage getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoLogMessage>(create);
+  static ProtoLogMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoLogMessage>(
+          ProtoLogMessage.$_createMessage);
   static ProtoLogMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1048,7 +1095,7 @@ class ProtoReadLogCallArguments extends $pb.GeneratedMessage {
     $core.String? uuid,
     $core.bool? clearLogs,
   }) {
-    final result = create();
+    final result = ProtoReadLogCallArguments._();
     if (uuid != null) result.uuid = uuid;
     if (clearLogs != null) result.clearLogs = clearLogs;
     return result;
@@ -1058,14 +1105,14 @@ class ProtoReadLogCallArguments extends $pb.GeneratedMessage {
 
   factory ProtoReadLogCallArguments.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoReadLogCallArguments()..mergeFromBuffer(data, registry);
   factory ProtoReadLogCallArguments.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoReadLogCallArguments()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoReadLogCallArguments',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoReadLogCallArguments.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..aOB(2, _omitFieldNames ? '' : 'clearLogs', protoName: 'clearLogs')
     ..hasRequiredFields = false;
@@ -1082,12 +1129,18 @@ class ProtoReadLogCallArguments extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoReadLogCallArguments() / ProtoReadLogCallArguments.new instead')
   static ProtoReadLogCallArguments create() => ProtoReadLogCallArguments._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      ProtoReadLogCallArguments._();
   @$core.override
-  ProtoReadLogCallArguments createEmptyInstance() => create();
+  ProtoReadLogCallArguments createEmptyInstance() =>
+      ProtoReadLogCallArguments._();
   @$core.pragma('dart2js:noInline')
   static ProtoReadLogCallArguments getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoReadLogCallArguments>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoReadLogCallArguments>(
+          ProtoReadLogCallArguments.$_createMessage);
   static ProtoReadLogCallArguments? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1114,7 +1167,7 @@ class ProtoReadMessagesResponse extends $pb.GeneratedMessage {
     $core.String? uuid,
     $core.Iterable<ProtoLogMessage>? protoLogMessage,
   }) {
-    final result = create();
+    final result = ProtoReadMessagesResponse._();
     if (uuid != null) result.uuid = uuid;
     if (protoLogMessage != null) result.protoLogMessage.addAll(protoLogMessage);
     return result;
@@ -1124,17 +1177,18 @@ class ProtoReadMessagesResponse extends $pb.GeneratedMessage {
 
   factory ProtoReadMessagesResponse.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoReadMessagesResponse()..mergeFromBuffer(data, registry);
   factory ProtoReadMessagesResponse.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoReadMessagesResponse()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoReadMessagesResponse',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoReadMessagesResponse.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..pPM<ProtoLogMessage>(2, _omitFieldNames ? '' : 'protoLogMessage',
-        protoName: 'protoLogMessage', subBuilder: ProtoLogMessage.create)
+        protoName: 'protoLogMessage',
+        subBuilder: ProtoLogMessage.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1149,12 +1203,18 @@ class ProtoReadMessagesResponse extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoReadMessagesResponse() / ProtoReadMessagesResponse.new instead')
   static ProtoReadMessagesResponse create() => ProtoReadMessagesResponse._();
+  static $pb.GeneratedMessage $_createMessage() =>
+      ProtoReadMessagesResponse._();
   @$core.override
-  ProtoReadMessagesResponse createEmptyInstance() => create();
+  ProtoReadMessagesResponse createEmptyInstance() =>
+      ProtoReadMessagesResponse._();
   @$core.pragma('dart2js:noInline')
   static ProtoReadMessagesResponse getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoReadMessagesResponse>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoReadMessagesResponse>(
+          ProtoReadMessagesResponse.$_createMessage);
   static ProtoReadMessagesResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1177,7 +1237,7 @@ class ProtoListImagesResponse extends $pb.GeneratedMessage {
     $core.bool? existing,
     $core.Iterable<ProtoImageSlot>? images,
   }) {
-    final result = create();
+    final result = ProtoListImagesResponse._();
     if (uuid != null) result.uuid = uuid;
     if (existing != null) result.existing = existing;
     if (images != null) result.images.addAll(images);
@@ -1188,18 +1248,18 @@ class ProtoListImagesResponse extends $pb.GeneratedMessage {
 
   factory ProtoListImagesResponse.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoListImagesResponse()..mergeFromBuffer(data, registry);
   factory ProtoListImagesResponse.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoListImagesResponse()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoListImagesResponse',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoListImagesResponse.$_createMessage)
     ..aOS(1, _omitFieldNames ? '' : 'uuid')
     ..aOB(2, _omitFieldNames ? '' : 'existing')
     ..pPM<ProtoImageSlot>(3, _omitFieldNames ? '' : 'images',
-        subBuilder: ProtoImageSlot.create)
+        subBuilder: ProtoImageSlot.$_createMessage)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1214,12 +1274,16 @@ class ProtoListImagesResponse extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated(
+      'Use ProtoListImagesResponse() / ProtoListImagesResponse.new instead')
   static ProtoListImagesResponse create() => ProtoListImagesResponse._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoListImagesResponse._();
   @$core.override
-  ProtoListImagesResponse createEmptyInstance() => create();
+  ProtoListImagesResponse createEmptyInstance() => ProtoListImagesResponse._();
   @$core.pragma('dart2js:noInline')
   static ProtoListImagesResponse getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoListImagesResponse>(create);
+      $pb.GeneratedMessage.$_defaultFor<ProtoListImagesResponse>(
+          ProtoListImagesResponse.$_createMessage);
   static ProtoListImagesResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -1256,7 +1320,7 @@ class ProtoImageSlot extends $pb.GeneratedMessage {
     $core.bool? active,
     $core.bool? permanent,
   }) {
-    final result = create();
+    final result = ProtoImageSlot._();
     if (image != null) result.image = image;
     if (slot != null) result.slot = slot;
     if (version != null) result.version = version;
@@ -1273,14 +1337,14 @@ class ProtoImageSlot extends $pb.GeneratedMessage {
 
   factory ProtoImageSlot.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
+      ProtoImageSlot()..mergeFromBuffer(data, registry);
   factory ProtoImageSlot.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
+      ProtoImageSlot()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'ProtoImageSlot',
-      createEmptyInstance: create)
+      createEmptyInstance: ProtoImageSlot.$_createMessage)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'image', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'slot', $pb.PbFieldType.OU6,
@@ -1306,12 +1370,15 @@ class ProtoImageSlot extends $pb.GeneratedMessage {
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
+  @$core.Deprecated('Use ProtoImageSlot() / ProtoImageSlot.new instead')
   static ProtoImageSlot create() => ProtoImageSlot._();
+  static $pb.GeneratedMessage $_createMessage() => ProtoImageSlot._();
   @$core.override
-  ProtoImageSlot createEmptyInstance() => create();
+  ProtoImageSlot createEmptyInstance() => ProtoImageSlot._();
   @$core.pragma('dart2js:noInline')
-  static ProtoImageSlot getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ProtoImageSlot>(create);
+  static ProtoImageSlot getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ProtoImageSlot>(
+          ProtoImageSlot.$_createMessage);
   static ProtoImageSlot? _defaultInstance;
 
   @$pb.TagNumber(1)
