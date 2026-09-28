@@ -1,6 +1,8 @@
 ## 0.10.0
 - Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12.
 - Migrates to AGP 9's built-in Kotlin support and new DSL.
+- [Bugfix] Fixed Direct XIP target slot being dropped on Android, causing subsequent updates to silently transfer nothing (#172).
+- Migrated iOS/macOS to Swift Package Manager, while remaining backwards compatible with CocoaPods (#156).
 
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
