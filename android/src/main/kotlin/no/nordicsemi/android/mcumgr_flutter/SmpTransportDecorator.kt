@@ -1,10 +1,10 @@
 package no.nordicsemi.android.mcumgr_flutter
 
-import io.runtime.mcumgr.McuMgrCallback
-import io.runtime.mcumgr.McuMgrScheme
-import io.runtime.mcumgr.McuMgrTransport
-import io.runtime.mcumgr.exception.McuMgrException
-import io.runtime.mcumgr.response.McuMgrResponse
+import no.nordicsemi.android.mcumgr.McuMgrCallback
+import no.nordicsemi.android.mcumgr.McuMgrScheme
+import no.nordicsemi.android.mcumgr.McuMgrTransport
+import no.nordicsemi.android.mcumgr.exception.McuMgrException
+import no.nordicsemi.android.mcumgr.response.McuMgrResponse
 import no.nordicsemi.android.mcumgr_flutter.logging.LoggableMcuMgrBleTransport
 
 class SmpTransportDecorator(
@@ -39,6 +39,11 @@ class SmpTransportDecorator(
 
     override fun connect(callback: McuMgrTransport.ConnectionCallback?) =
         wrapped.connect(callback)
+
+    override fun changeMode(
+        mode: String,
+        callback: McuMgrTransport.ModeChangeCallback?,
+    ): Boolean = wrapped.changeMode(mode, callback)
 
     override fun release() = wrapped.release()
 

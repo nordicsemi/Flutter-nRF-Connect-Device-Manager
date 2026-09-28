@@ -1,9 +1,9 @@
 package no.nordicsemi.android.mcumgr_flutter
 
-import io.runtime.mcumgr.McuManager
-import io.runtime.mcumgr.McuMgrCallback
-import io.runtime.mcumgr.McuMgrTransport
-import io.runtime.mcumgr.response.McuMgrResponse
+import no.nordicsemi.android.mcumgr.McuManager
+import no.nordicsemi.android.mcumgr.McuMgrCallback
+import no.nordicsemi.android.mcumgr.McuMgrTransport
+import no.nordicsemi.android.mcumgr.response.McuMgrResponse
 
 class CustomGroupManager(groupId: Int, transport: McuMgrTransport) :
     McuManager(groupId, transport) {

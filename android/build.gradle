@@ -1,21 +1,13 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.squareup.wire'
+}
+
 group 'no.nordicsemi.android.mcumgr_flutter'
 version '1.0-SNAPSHOT'
-
-buildscript {
-    ext.kotlin_version = '2.3.21'
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:9.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.squareup.wire:wire-gradle-plugin:5.5.1'
-    }
-}
 
 rootProject.allprojects {
     repositories {
@@ -24,32 +16,29 @@ rootProject.allprojects {
     }
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.squareup.wire'
-
 android {
     namespace = 'no.nordicsemi.android.mcumgr_flutter'
-    compileSdk = 36
+    compileSdk = 37
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
         minSdk = 21
-        targetSdk = 36
+        targetSdk = 37
     }
-    lintOptions {
-        disable 'InvalidPackage'
+    lint {
+        disable += 'InvalidPackage'
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlin {
-        compilerOptions {
-            jvmTarget = JvmTarget.JVM_21
-        }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_21
     }
 }
 
@@ -61,7 +50,7 @@ wire {
 }
 
 dependencies {
-    implementation 'no.nordicsemi.android:mcumgr-ble:2.9.0'
+    implementation 'no.nordicsemi.android:mcumgr-ble:3.4.1'
 
     // Keep protobuf-lite below 4.34 to avoid DescriptorProtos duplication with
     // Firebase's protolite-well-known-types in host apps.
