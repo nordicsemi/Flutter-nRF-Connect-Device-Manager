@@ -4,6 +4,7 @@
 - [Bugfix] Fixed Direct XIP target slot being dropped on Android, causing subsequent updates to silently transfer nothing (#172).
 - Migrated iOS/macOS to Swift Package Manager, while remaining backwards compatible with CocoaPods (#156).
 - Updated Android `mcumgr-ble` from 2.9.0 to 3.4.1 (packages renamed from `io.runtime.mcumgr` to `no.nordicsemi.android.mcumgr`).
+- Updated `protobuf` from 5.1.0 to 6.1.0.
 
 ## 0.9.1
 - Protobuf downgraded to 3.25.4 to fix collision with Firebase.
