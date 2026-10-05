@@ -50,6 +50,8 @@ wire {
 }
 
 dependencies {
+    testImplementation 'junit:junit:4.13.2'
+
     implementation 'no.nordicsemi.android:mcumgr-ble:3.4.1'
 
     // Keep protobuf-lite below 4.34 to avoid DescriptorProtos duplication with

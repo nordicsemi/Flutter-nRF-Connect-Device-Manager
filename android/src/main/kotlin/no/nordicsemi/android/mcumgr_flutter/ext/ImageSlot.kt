@@ -6,6 +6,7 @@ import okio.ByteString.Companion.toByteString
 
 fun McuMgrImageStateResponse.ImageSlot.toProto(): ProtoImageSlot {
     return ProtoImageSlot(
+        image = this.image.toLong(),
         slot = this.slot.toLong(),
         version = version,
         hash = hash.toByteString(),
