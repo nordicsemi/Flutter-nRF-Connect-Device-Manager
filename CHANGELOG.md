@@ -1,3 +1,7 @@
+## 0.10.1
+- Fix Android image index in firmware slot responses (#188).
+- Migrated to build-in Kotlin from AGP 9 (#189).
+
 ## 0.10.0
 - Updates the minimum supported SDK version to Flutter 3.44/Dart 3.12.
 - Migrates Android build files to AGP 9's new DSL. Keeps the classic Kotlin Gradle Plugin rather than AGP's built-in Kotlin, since AGP 9.4.1's bundled compiler can't yet read the Kotlin 2.4 metadata `mcumgr-ble` requires.
