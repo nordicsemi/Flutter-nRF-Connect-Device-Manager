@@ -13,7 +13,7 @@ dependencies:
   archive: ^4.0.9
   flutter_bloc: ^9.1.1
   flutter_blue_plus: ^2.0.0
-  flutter_blue_plus_winrt: ^0.0.20
+  flutter_blue_plus_winrt: ^0.0.22
   http: ^1.5.0
   json_annotation: ^4.9.0
   mcumgr_flutter:
