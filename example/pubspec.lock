@@ -354,10 +354,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_blue_plus_winrt
-      sha256: "0000b2d818e6f79ad07764206fdd8afb69426fd44453c6254c35828fd16aa09f"
+      sha256: f98bc9182d13d3eb02dfa033568b46dca97f6e2c2cc292705fa53279d07db421
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.20"
+    version: "0.0.22"
   flutter_test:
     dependency: "direct dev"
     description: flutter
