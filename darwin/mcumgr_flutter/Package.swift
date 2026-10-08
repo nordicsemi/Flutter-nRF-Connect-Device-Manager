@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/nordicsemi/IOS-nRF-Connect-Device-Manager.git", from: "1.14.7"),
-        .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.38.1"),
         .package(name: "FlutterFramework", path: "../FlutterFramework"),
     ],
     targets: [
