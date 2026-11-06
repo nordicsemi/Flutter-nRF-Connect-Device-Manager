@@ -15,6 +15,8 @@ extension type McuMgrFlutterJS._(JSObject _) implements JSObject {
   external void pause(JSString deviceId);
   external void resume(JSString deviceId);
   external void cancel(JSString deviceId);
+  external JSArray<McuCachedDevice> getCachedDevices();
+  external void clearCachedDevices();
 }
 
 class WebUpdateManager extends FirmwareUpdateManager {
@@ -43,90 +45,100 @@ class WebUpdateManager extends FirmwareUpdateManager {
     return _updateStateStreamController.stream;
   }
 
+  JSFunction? _progressListener;
+  JSFunction? _stateListener;
+  JSFunction? _logListener;
+
+  void _removeListeners() {
+    if (_progressListener != null) {
+      web.window.removeEventListener('mcumgr_progress', _progressListener!);
+      _progressListener = null;
+    }
+    if (_stateListener != null) {
+      web.window.removeEventListener('mcumgr_state', _stateListener!);
+      _stateListener = null;
+    }
+    if (_logListener != null) {
+      web.window.removeEventListener('mcumgr_log', _logListener!);
+      _logListener = null;
+    }
+  }
+
   @override
   Future<void> update(
     List<Image> images, {
     FirmwareUpgradeConfiguration configuration = const FirmwareUpgradeConfiguration(),
   }) async {
-    // Ensure JS is loaded
     await McuMgrWebLoader.loadJs();
+
+    _removeListeners();
 
     _updateInProgressStreamController.add(true);
     _updateStateStreamController.add(FirmwareUpgradeState.upload);
 
     print("WebUpdateManager: Starting update for device $_deviceId with ${images.length} images.");
 
-    // Setup Event Listeners
+    _progressListener = (web.CustomEvent event) {
+      if (_progressStreamController.isClosed) return;
+      final info = event.detail as McuProgressEventDetail;
+      if (info.deviceId.toDart == _deviceId) {
+        _progressStreamController.add(ProgressUpdate(info.progress.toDartInt, 100, DateTime.now()));
+      }
+    }.toJS;
 
-    // Progress Listener
-    web.window.addEventListener(
-      'mcumgr_progress',
-      (web.CustomEvent event) {
-        final detail = event.detail as JSObject;
-        final info = detail as McuProgressEventDetail;
-        if (info.deviceId.toDart == _deviceId) {
-          _progressStreamController.add(ProgressUpdate(info.progress.toDartInt, 100, DateTime.now()));
-        }
-      }.toJS,
-    );
-
-    // State Listener
-    web.window.addEventListener(
-      'mcumgr_state',
-      (web.CustomEvent event) {
-        final detail = event.detail as JSObject;
-        final info = detail as McuStateEventDetail;
-
-        if (info.deviceId.toDart == _deviceId) {
-          String state = info.state.toDart;
-          if (state == 'success') {
+    _stateListener = (web.CustomEvent event) {
+      if (_updateStateStreamController.isClosed) return;
+      final info = event.detail as McuStateEventDetail;
+      if (info.deviceId.toDart == _deviceId) {
+        switch (info.state.toDart) {
+          case 'success':
             _updateStateStreamController.add(FirmwareUpgradeState.success);
             _updateInProgressStreamController.add(false);
-          } else if (state == 'error') {
+          case 'error':
             _updateStateStreamController.addError(info.error?.toDart ?? "Unknown Error");
             _updateInProgressStreamController.add(false);
-          } else if (state == 'validate') {
+          case 'validate':
             _updateStateStreamController.add(FirmwareUpgradeState.validate);
-          } else if (state == 'upload') {
+          case 'upload':
             _updateStateStreamController.add(FirmwareUpgradeState.upload);
-          } else if (state == 'test') {
+          case 'test':
             _updateStateStreamController.add(FirmwareUpgradeState.test);
-          } else if (state == 'confirm') {
+          case 'confirm':
             _updateStateStreamController.add(FirmwareUpgradeState.confirm);
-          } else if (state == 'requestMcuMgrParameters') {
+          case 'requestMcuMgrParameters':
             _updateStateStreamController.add(FirmwareUpgradeState.requestMcuMgrParameters);
-          } else if (state == 'eraseAppSettings') {
+          case 'eraseAppSettings':
             _updateStateStreamController.add(FirmwareUpgradeState.eraseAppSettings);
-          } else if (state == 'bootloaderInfo') {
+          case 'bootloaderInfo':
             _updateStateStreamController.add(FirmwareUpgradeState.bootloaderInfo);
-          }
         }
-      }.toJS,
-    );
+      }
+    }.toJS;
 
-    // Log Listener
-    web.window.addEventListener(
-      'mcumgr_log',
-      (web.CustomEvent event) {
-        final detail = event.detail as JSObject;
-        final message = (detail as McuLogEventDetail).message.toDart;
-        print("JS: $message");
-      }.toJS,
-    );
+    _logListener = (web.CustomEvent event) {
+      final message = (event.detail as McuLogEventDetail).message.toDart;
+      print("JS: $message");
+    }.toJS;
+
+    web.window.addEventListener('mcumgr_progress', _progressListener!);
+    web.window.addEventListener('mcumgr_state', _stateListener!);
+    web.window.addEventListener('mcumgr_log', _logListener!);
 
     try {
-      final jsImages =
-          images
-              .map((img) {
-                return McuImage(image: img.image.toJS, data: img.data.toJS);
-              })
-              .toList()
-              .toJS;
-
+      final jsImages = images
+          .map((img) => McuImage(image: img.image.toJS, data: img.data.toJS))
+          .toList()
+          .toJS;
       await mcuMgrFlutter.update(_deviceId.toJS, jsImages, JSObject()).toDart;
     } catch (e) {
-      _updateStateStreamController.addError(e);
-      _updateInProgressStreamController.add(false);
+      if (!_updateStateStreamController.isClosed) {
+        _updateStateStreamController.addError(e);
+      }
+      if (!_updateInProgressStreamController.isClosed) {
+        _updateInProgressStreamController.add(false);
+      }
+    } finally {
+      _removeListeners();
     }
   }
 
@@ -197,6 +209,13 @@ class WebUpdateManager extends FirmwareUpdateManager {
 }
 
 // Interop Extensions
+
+@JS()
+extension type McuCachedDevice._(JSObject _) implements JSObject {
+  external JSString get id;
+  external JSString? get name;
+  external JSBoolean get watchingAdvertisements;
+}
 
 @JS()
 extension type McuImage._(JSObject _) implements JSObject {
