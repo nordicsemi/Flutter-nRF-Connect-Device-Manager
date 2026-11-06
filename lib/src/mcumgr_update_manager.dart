@@ -141,9 +141,13 @@ class DeviceUpdateManager extends FirmwareUpdateManager {
   Future<bool> isPaused() async => await methodChannel.invokeMethod(
       UpdateManagerMethod.isPaused.rawValue, _deviceId);
 
+  static final Stream<dynamic> _sharedProgressStream =
+      UpdateManagerChannel.progressStream.receiveBroadcastStream();
+  static final Stream<dynamic> _sharedStateStream =
+      UpdateManagerChannel.updateStateStream.receiveBroadcastStream();
+
   void _setupProgressUpdateStream() {
-    UpdateManagerChannel.progressStream
-        .receiveBroadcastStream()
+    _sharedProgressStream
         .map((event) => ProtoProgressUpdateStreamArg.fromBuffer(event))
         .where((event) => event.uuid == _deviceId)
         .where((event) => event.hasProgressUpdate())
@@ -154,8 +158,7 @@ class DeviceUpdateManager extends FirmwareUpdateManager {
   }
 
   void _setupUpdateStateStream() {
-    UpdateManagerChannel.updateStateStream
-        .receiveBroadcastStream()
+    _sharedStateStream
         .map((event) => ProtoUpdateStateChangesStreamArg.fromBuffer(event))
         .where((event) => event.uuid == _deviceId)
         .listen((data) async {
